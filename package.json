@@ -1,0 +1,25 @@
+{
+  "name": "cx-programming-language-extension",
+  "displayName": "CX Programming Language Extension",
+  "description": "Extension for CX Programming Language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.138.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "cx",
+      "aliases": ["CX", "cx"],
+      "extensions": [".cx"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "cx",
+      "scopeName": "source.cx",
+      "path": "./syntaxes/cx.tmLanguage.json"
+    }]
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "CX",
+  "scopeName": "source.cx",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#characters" },
+    { "include": "#numbers" },
+    { "include": "#annotations" },
+    { "include": "#declarations" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#constants" },
+    { "include": "#operators" },
+    { "include": "#function-calls" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.cx",
+          "begin": "//",
+          "beginCaptures": { "0": { "name": "punctuation.definition.comment.cx" } },
+          "end": "$\\n?",
+          "patterns": [
+            { "name": "keyword.other.region.cx", "match": "\\b(?:end)?region\\b" },
+            { "name": "storage.type.class.todo.cx", "match": "\\b(?:TODO|FIXME|HACK|NOTE|BUG|XXX)\\b" }
+          ]
+        },
+        {
+          "name": "comment.block.cx",
+          "begin": "/\\*",
+          "beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.cx" } },
+          "end": "\\*/",
+          "endCaptures": { "0": { "name": "punctuation.definition.comment.end.cx" } },
+          "patterns": [
+            { "name": "storage.type.class.todo.cx", "match": "\\b(?:TODO|FIXME|HACK|NOTE|BUG|XXX)\\b" }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.cx",
+      "begin": "\"",
+      "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.cx" } },
+      "end": "\"|(?=$)",
+      "endCaptures": { "0": { "name": "punctuation.definition.string.end.cx" } },
+      "patterns": [
+        { "name": "constant.character.escape.cx", "match": "\\\\[\"'\\\\nrtb0]" },
+        { "name": "invalid.illegal.escape.cx", "match": "\\\\." }
+      ]
+    },
+    "characters": {
+      "name": "string.quoted.single.cx",
+      "begin": "'",
+      "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.cx" } },
+      "end": "'|(?=$)",
+      "endCaptures": { "0": { "name": "punctuation.definition.string.end.cx" } },
+      "patterns": [
+        { "name": "constant.character.escape.cx", "match": "\\\\[\"'\\\\nrtb0]" },
+        { "name": "invalid.illegal.escape.cx", "match": "\\\\." }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        { "name": "constant.numeric.float.cx", "match": "(?<![A-Za-z0-9_])(?:[0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)(?:[eE][+-]?[0-9]+)?[fFdDmM]?(?![A-Za-z0-9_])" },
+        { "name": "constant.numeric.hex.cx", "match": "(?<![A-Za-z0-9_])0[xX][0-9a-fA-F]+[uU]?[lL]?(?![A-Za-z0-9_])" },
+        { "name": "constant.numeric.binary.cx", "match": "(?<![A-Za-z0-9_])0[bB][01]+[uU]?[lL]?(?![A-Za-z0-9_])" },
+        { "name": "constant.numeric.octal.cx", "match": "(?<![A-Za-z0-9_])0[0-7]+[uU]?[lL]?(?![A-Za-z0-9_])" },
+        { "name": "constant.numeric.decimal.cx", "match": "(?<![A-Za-z0-9_])[0-9]+[uU]?[lL]?(?![A-Za-z0-9_])" }
+      ]
+    },
+    "annotations": {
+      "name": "meta.annotation.cx",
+      "match": "(@)([A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)",
+      "captures": {
+        "1": { "name": "punctuation.definition.annotation.cx" },
+        "2": { "name": "entity.name.type.annotation.cx" }
+      }
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "match": "\\b(class|struct|interface|enum|extension|concept|delegate)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.other.declaration.cx" },
+            "2": { "name": "entity.name.type.cx" }
+          }
+        },
+        {
+          "match": "\\b(namespace|import)\\s+([A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)",
+          "captures": {
+            "1": { "name": "keyword.other.namespace.cx" },
+            "2": { "name": "entity.name.namespace.cx" }
+          }
+        },
+        {
+          "match": "\\b(typedef)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.other.declaration.cx" },
+            "2": { "name": "entity.name.type.alias.cx" }
+          }
+        },
+        { "name": "storage.type.function.cx", "match": "\\bconstructor\\b" }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "keyword.control.conditional.cx", "match": "\\b(?:if|else|switch|case|default|when)\\b" },
+        { "name": "keyword.control.loop.cx", "match": "\\b(?:do|for|foreach|while|in)\\b" },
+        { "name": "keyword.control.flow.cx", "match": "\\b(?:break|continue|return|throw|try|catch|finally)\\b" },
+        { "name": "keyword.control.async.cx", "match": "\\b(?:async|await)\\b" },
+        { "name": "keyword.other.declaration.cx", "match": "\\b(?:alias|class|concept|delegate|enum|extension|import|interface|namespace|struct|typedef|using)\\b" },
+        { "name": "storage.modifier.cx", "match": "\\b(?:abstract|const|extern|final|internal|override|params|partial|private|protected|public|ref|out|static|virtual)\\b" },
+        { "name": "keyword.other.expression.cx", "match": "\\b(?:as|is|nameof|new|operator|sizeof|typeof)\\b" },
+        { "name": "variable.language.cx", "match": "\\b(?:base|this)\\b" },
+        { "name": "keyword.other.accessor.cx", "match": "\\b(?:get|set)\\b" }
+      ]
+    },
+    "types": {
+      "name": "storage.type.cx",
+      "match": "\\b(?:bool|byte|char|decimal|double|float|float32|float64|int|int8|int16|int32|int64|long|object|ptr|sbyte|short|string|uint|uint8|uint16|uint32|uint64|ulong|ushort|var|void)\\b"
+    },
+    "constants": {
+      "name": "constant.language.cx",
+      "match": "\\b(?:true|false|null)\\b"
+    },
+    "operators": {
+      "name": "keyword.operator.cx",
+      "match": "\\?=>|\\|=>|!=>|=>|\\?\\?|<<=|>>=|\\+\\+|--|&&|\\|\\||==|!=|<=|>=|<<|>>|\\*=|/=|%=|\\+=|-=|&=|\\|=|\\^=|[+\\-*/%&|^!~<>=?:]"
+    },
+    "function-calls": {
+      "name": "entity.name.function.call.cx",
+      "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b(?=\\s*\\()"
+    }
+  }
+}

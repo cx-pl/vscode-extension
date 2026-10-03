@@ -10,16 +10,25 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "cx",
-      "aliases": ["CX", "cx"],
-      "extensions": [".cx"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "cx",
-      "scopeName": "source.cx",
-      "path": "./syntaxes/cx.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "cx",
+        "aliases": [
+          "CX",
+          "cx"
+        ],
+        "extensions": [
+          ".cx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cx",
+        "scopeName": "source.cx",
+        "path": "./syntaxes/cx.tmLanguage.json"
+      }
+    ]
   }
 }

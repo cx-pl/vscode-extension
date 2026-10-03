@@ -21,21 +21,36 @@
         {
           "name": "comment.line.double-slash.cx",
           "begin": "//",
-          "beginCaptures": { "0": { "name": "punctuation.definition.comment.cx" } },
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.comment.cx" }
+          },
           "end": "$\\n?",
           "patterns": [
-            { "name": "keyword.other.region.cx", "match": "\\b(?:end)?region\\b" },
-            { "name": "storage.type.class.todo.cx", "match": "\\b(?:TODO|FIXME|HACK|NOTE|BUG|XXX)\\b" }
+            {
+              "name": "keyword.other.region.cx",
+              "match": "\\b(?:end)?region\\b"
+            },
+            {
+              "name": "storage.type.class.todo.cx",
+              "match": "\\b(?:TODO|FIXME|HACK|NOTE|BUG|XXX)\\b"
+            }
           ]
         },
         {
           "name": "comment.block.cx",
           "begin": "/\\*",
-          "beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.cx" } },
+          "beginCaptures": {
+            "0": { "name": "punctuation.definition.comment.begin.cx" }
+          },
           "end": "\\*/",
-          "endCaptures": { "0": { "name": "punctuation.definition.comment.end.cx" } },
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.comment.end.cx" }
+          },
           "patterns": [
-            { "name": "storage.type.class.todo.cx", "match": "\\b(?:TODO|FIXME|HACK|NOTE|BUG|XXX)\\b" }
+            {
+              "name": "storage.type.class.todo.cx",
+              "match": "\\b(?:TODO|FIXME|HACK|NOTE|BUG|XXX)\\b"
+            }
           ]
         }
       ]
@@ -43,32 +58,61 @@
     "strings": {
       "name": "string.quoted.double.cx",
       "begin": "\"",
-      "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.cx" } },
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.cx" }
+      },
       "end": "\"|(?=$)",
-      "endCaptures": { "0": { "name": "punctuation.definition.string.end.cx" } },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.cx" }
+      },
       "patterns": [
-        { "name": "constant.character.escape.cx", "match": "\\\\[\"'\\\\nrtb0]" },
+        {
+          "name": "constant.character.escape.cx",
+          "match": "\\\\[\"'\\\\nrtb0]"
+        },
         { "name": "invalid.illegal.escape.cx", "match": "\\\\." }
       ]
     },
     "characters": {
       "name": "string.quoted.single.cx",
       "begin": "'",
-      "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.cx" } },
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.cx" }
+      },
       "end": "'|(?=$)",
-      "endCaptures": { "0": { "name": "punctuation.definition.string.end.cx" } },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.cx" }
+      },
       "patterns": [
-        { "name": "constant.character.escape.cx", "match": "\\\\[\"'\\\\nrtb0]" },
+        {
+          "name": "constant.character.escape.cx",
+          "match": "\\\\[\"'\\\\nrtb0]"
+        },
         { "name": "invalid.illegal.escape.cx", "match": "\\\\." }
       ]
     },
     "numbers": {
       "patterns": [
-        { "name": "constant.numeric.float.cx", "match": "(?<![A-Za-z0-9_])(?:[0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)(?:[eE][+-]?[0-9]+)?[fFdDmM]?(?![A-Za-z0-9_])" },
-        { "name": "constant.numeric.hex.cx", "match": "(?<![A-Za-z0-9_])0[xX][0-9a-fA-F]+[uU]?[lL]?(?![A-Za-z0-9_])" },
-        { "name": "constant.numeric.binary.cx", "match": "(?<![A-Za-z0-9_])0[bB][01]+[uU]?[lL]?(?![A-Za-z0-9_])" },
-        { "name": "constant.numeric.octal.cx", "match": "(?<![A-Za-z0-9_])0[0-7]+[uU]?[lL]?(?![A-Za-z0-9_])" },
-        { "name": "constant.numeric.decimal.cx", "match": "(?<![A-Za-z0-9_])[0-9]+[uU]?[lL]?(?![A-Za-z0-9_])" }
+        {
+          "name": "constant.numeric.float.cx",
+          "match": "(?<![A-Za-z0-9_])(?:[0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)(?:[eE][+-]?[0-9]+)?[fFdDmM]?(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.hex.cx",
+          "match": "(?<![A-Za-z0-9_])0[xX][0-9a-fA-F]+[uU]?[lL]?(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.binary.cx",
+          "match": "(?<![A-Za-z0-9_])0[bB][01]+[uU]?[lL]?(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.octal.cx",
+          "match": "(?<![A-Za-z0-9_])0[0-7]+[uU]?[lL]?(?![A-Za-z0-9_])"
+        },
+        {
+          "name": "constant.numeric.decimal.cx",
+          "match": "(?<![A-Za-z0-9_])[0-9]+[uU]?[lL]?(?![A-Za-z0-9_])"
+        }
       ]
     },
     "annotations": {
@@ -107,13 +151,34 @@
     },
     "keywords": {
       "patterns": [
-        { "name": "keyword.control.conditional.cx", "match": "\\b(?:if|else|switch|case|default|when)\\b" },
-        { "name": "keyword.control.loop.cx", "match": "\\b(?:do|for|foreach|while|in)\\b" },
-        { "name": "keyword.control.flow.cx", "match": "\\b(?:break|continue|return|throw|try|catch|finally)\\b" },
-        { "name": "keyword.control.async.cx", "match": "\\b(?:async|await)\\b" },
-        { "name": "keyword.other.declaration.cx", "match": "\\b(?:alias|class|concept|delegate|enum|extension|import|interface|namespace|struct|typedef|using)\\b" },
-        { "name": "storage.modifier.cx", "match": "\\b(?:abstract|const|extern|final|internal|override|params|partial|private|protected|public|ref|out|static|virtual)\\b" },
-        { "name": "keyword.other.expression.cx", "match": "\\b(?:as|is|nameof|new|operator|sizeof|typeof)\\b" },
+        {
+          "name": "keyword.control.conditional.cx",
+          "match": "\\b(?:if|else|switch|case|default|when)\\b"
+        },
+        {
+          "name": "keyword.control.loop.cx",
+          "match": "\\b(?:do|for|foreach|while|in)\\b"
+        },
+        {
+          "name": "keyword.control.flow.cx",
+          "match": "\\b(?:break|continue|return|throw|try|catch|finally)\\b"
+        },
+        {
+          "name": "keyword.control.async.cx",
+          "match": "\\b(?:async|await)\\b"
+        },
+        {
+          "name": "keyword.other.declaration.cx",
+          "match": "\\b(?:alias|class|concept|delegate|enum|extension|import|interface|namespace|struct|typedef|using)\\b"
+        },
+        {
+          "name": "storage.modifier.cx",
+          "match": "\\b(?:abstract|const|extern|final|internal|override|params|partial|private|protected|public|ref|out|static|virtual)\\b"
+        },
+        {
+          "name": "keyword.other.expression.cx",
+          "match": "\\b(?:as|is|nameof|new|operator|sizeof|typeof)\\b"
+        },
         { "name": "variable.language.cx", "match": "\\b(?:base|this)\\b" },
         { "name": "keyword.other.accessor.cx", "match": "\\b(?:get|set)\\b" }
       ]

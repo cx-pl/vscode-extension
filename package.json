@@ -3,13 +3,83 @@
   "displayName": "CX Programming Language Extension",
   "description": "Extension for CX Programming Language",
   "version": "0.0.1",
+  "main": "./extension.js",
   "engines": {
     "vscode": "^1.138.0"
   },
+  "extensionDependencies": [
+    "ms-vscode.cpptools"
+  ],
+  "activationEvents": [
+    "onLanguage:cx",
+    "onCommand:cx.buildCurrentFile",
+    "onCommand:cx.runCurrentFile",
+    "onCommand:cx.debugCurrentFile"
+  ],
   "categories": [
     "Programming Languages"
   ],
   "contributes": {
+    "breakpoints": [
+      { "language": "cx" }
+    ],
+    "keybindings": [
+      { "command": "cx.debugCurrentFile", "key": "F5", "when": "editorLangId == cx || resourceExtname == .cxproj" },
+      { "command": "cx.runCurrentFile", "key": "Ctrl+F5", "when": "editorLangId == cx || resourceExtname == .cxproj" }
+    ],
+    "commands": [
+      { "command": "cx.buildCurrentFile", "title": "CX: Build Current File" },
+      { "command": "cx.runCurrentFile", "title": "CX: Run Current File" },
+      { "command": "cx.debugCurrentFile", "title": "CX: Debug Current File (Windows/MSVC)" }
+    ],
+    "problemMatchers": [
+      {
+        "name": "cx",
+        "label": "CX compiler diagnostics",
+        "owner": "cx",
+        "fileLocation": ["absolute"],
+        "pattern": {
+          "regexp": "^(.*)\\((\\d+),(\\d+)\\): (error|warning): (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    ],
+    "configuration": {
+      "title": "CX",
+      "properties": {
+        "cx.compilerPath": {
+          "type": "string",
+          "default": "cxc",
+          "description": "Path to the CX compiler executable. It must be available in PATH or specified as an absolute path."
+        },
+        "cx.cxcoreDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Optional path to the cxcore source checkout used when compiling CX files."
+        },
+        "cx.programArguments": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Arguments passed to the CX program when running or debugging it."
+        },
+        "cx.environment": {
+          "type": "object",
+          "default": {},
+          "additionalProperties": { "type": "string" },
+          "description": "Environment variables set for the CX program."
+        },
+        "cx.workingDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Program working directory, relative to the source or project file directory when not absolute."
+        }
+      }
+    },
     "languages": [
       {
         "id": "cx",

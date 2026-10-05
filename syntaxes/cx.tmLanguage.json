@@ -3,6 +3,7 @@
   "name": "CX",
   "scopeName": "source.cx",
   "patterns": [
+    { "include": "#preprocessor" },
     { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#characters" },
@@ -16,6 +17,13 @@
     { "include": "#function-calls" }
   ],
   "repository": {
+    "preprocessor": {
+      "name": "meta.preprocessor.cx",
+      "match": "^[ \\t]*#\\s*(?:if|elif|else|endif|define|undef|error|warning)\\b.*$",
+      "captures": {
+        "0": { "name": "keyword.control.preprocessor.cx" }
+      }
+    },
     "comments": {
       "patterns": [
         {
